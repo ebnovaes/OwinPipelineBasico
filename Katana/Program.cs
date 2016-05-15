@@ -22,11 +22,12 @@ namespace Katana
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseSillyLogging();
+            app.UseSillyAuthentication();
+
             MyMiddlewareConfigOptions options = new MyMiddlewareConfigOptions("Greetings!", "John");
             options.IncludeDate = true;
-
-            app.UseMyMiddleware(options);
-            app.UserMyOtherMiddleware();
+            app.UseMyMiddleware(options);            
         }
     }
 
@@ -40,6 +41,16 @@ namespace Katana
         public static void UserMyOtherMiddleware(this IAppBuilder app)
         {
             app.Use<MyOtherMiddlewareComponent>();
+        }
+
+        public static void UseSillyAuthentication(this IAppBuilder app)
+        {
+            app.Use<SillyAuthenticationComponent>();
+        }
+
+        public static void UseSillyLogging(this IAppBuilder app)
+        {
+            app.Use<SillyLoggingComponent>();
         }
     }
 
@@ -87,7 +98,10 @@ namespace Katana
 
             IOwinContext context = new OwinContext(environment);
             await context.Response.WriteAsync(string.Format("<h1>{0}</h1>", _configOptions.GetGreeting()));
-            await _next.Invoke(environment);
+
+            context.Response.StatusCode = 200;
+            context.Response.ReasonPhrase = "OK";
+
         }
     }
 
