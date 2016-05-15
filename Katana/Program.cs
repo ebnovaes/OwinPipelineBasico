@@ -22,16 +22,16 @@ namespace Katana
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseMyMiddleware();
+            app.UseMyMiddleware("This is the new greeting for MyMiddleware!");
             app.UserMyOtherMiddleware();
         }
     }
 
     public static class AppBuildExtensions
     {
-        public static void UseMyMiddleware(this IAppBuilder app)
+        public static void UseMyMiddleware(this IAppBuilder app, string greetingOption)
         {
-            app.Use<MyMiddlewareComponent>();
+            app.Use<MyMiddlewareComponent>(greetingOption);
         }
 
         public static void UserMyOtherMiddleware(this IAppBuilder app)
@@ -43,17 +43,19 @@ namespace Katana
     public class MyMiddlewareComponent
     {
         AppFunc _next;
+        string _greeting;
 
-        public MyMiddlewareComponent(AppFunc next)
+        public MyMiddlewareComponent(AppFunc next, string greeting)
         {
             _next = next;
+            _greeting = greeting;
         }
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
 
             IOwinContext context = new OwinContext(environment);
-            await context.Response.WriteAsync("<h1>Hello from my First Middleware</h1>");
+            await context.Response.WriteAsync(string.Format("<h1>{0}</h1>", _greeting));
             await _next.Invoke(environment);
         }
 
