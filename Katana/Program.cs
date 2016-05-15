@@ -7,6 +7,7 @@ using System.IO;
 
 namespace Katana
 {
+    using Microsoft.Owin;
     using AppFunc = Func<IDictionary<string, object>, Task>;
     class Program
     {
@@ -22,40 +23,44 @@ namespace Katana
     {
         public void Configuration(IAppBuilder app)
         {
-            var middleware = new Func<AppFunc, AppFunc>(MyMiddleware);
-            var otherMiddleware = new Func<AppFunc, AppFunc>(MyOtherMiddleware);
-            app.Use(middleware);
-            app.Use(otherMiddleware);
+            app.Use<MyMiddlewareComponent>();
+            app.Use<MyOtherMiddlewareComponent>();
+        }
+    }
+
+    public class MyMiddlewareComponent
+    {
+        AppFunc _next;
+
+        public MyMiddlewareComponent(AppFunc next)
+        {
+            _next = next;
         }
 
-        public AppFunc MyMiddleware(AppFunc next)
+        public async Task Invoke(IDictionary<string, object> environment)
         {
-            AppFunc appFunc = async (IDictionary<string, object> environment) =>
-            {
-                Stream response = environment["owin.ResponseBody"] as Stream;
-                using (StreamWriter writer = new StreamWriter(response))
-                {
-                    await writer.WriteAsync("<h1>Hello from my First Middleware</h1>");
-                }
 
-               await next.Invoke(environment);
-            };
-            return appFunc;
+            IOwinContext context = new OwinContext(environment);
+            await context.Response.WriteAsync("<h1>Hello from my First Middleware</h1>");
+            await _next.Invoke(environment);
         }
 
-        public AppFunc MyOtherMiddleware(AppFunc next)
-        {
-            AppFunc appFunc = async (IDictionary<string, object> environment) =>
-            {
-                var response = environment["owin.ResponseBody"] as Stream;
-                using (StreamWriter writer = new StreamWriter(response))
-                {
-                    await writer.WriteAsync("<h1>Hello from my second middleware</h1>");
-                }
-                await next.Invoke(environment);
-            };
+    }
 
-            return appFunc;
+    public class MyOtherMiddlewareComponent
+    {
+        AppFunc _next;
+
+        public MyOtherMiddlewareComponent(AppFunc next)
+        {
+            _next = next;
+        }
+
+        public async Task Invoke(IDictionary<string, object> environment)
+        {
+            IOwinContext context = new OwinContext(environment);
+            await context.Response.WriteAsync("<h1>Hello from my second middleware</h1>");
+            await _next.Invoke(environment);
         }
     }
 }
