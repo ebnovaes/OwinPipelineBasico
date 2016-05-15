@@ -1,0 +1,13 @@
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Katana.exe.config
+C:\Desenvolvimento\PontoNet\Katana\Katana\obj\Debug\Katana.csprojResolveAssemblyReference.cache
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Katana.exe
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Katana.pdb
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.dll
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.Host.HttpListener.dll
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.Hosting.dll
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Owin.dll
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.xml
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.Host.HttpListener.xml
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.Hosting.xml
+C:\Desenvolvimento\PontoNet\Katana\Katana\obj\Debug\Katana.exe
+C:\Desenvolvimento\PontoNet\Katana\Katana\obj\Debug\Katana.pdb
