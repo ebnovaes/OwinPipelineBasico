@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Microsoft.Owin.Hosting;
 using Owin;
 using System.Threading.Tasks;
-using System.IO;
 
 namespace Katana
 {
@@ -23,7 +22,20 @@ namespace Katana
     {
         public void Configuration(IAppBuilder app)
         {
+            app.UseMyMiddleware();
+            app.UserMyOtherMiddleware();
+        }
+    }
+
+    public static class AppBuildExtensions
+    {
+        public static void UseMyMiddleware(this IAppBuilder app)
+        {
             app.Use<MyMiddlewareComponent>();
+        }
+
+        public static void UserMyOtherMiddleware(this IAppBuilder app)
+        {
             app.Use<MyOtherMiddlewareComponent>();
         }
     }
