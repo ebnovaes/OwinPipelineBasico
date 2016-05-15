@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Owin;
 
-namespace Katana
+namespace SillyAuthentication
 {
     using AppFunc = Func<IDictionary<string, object>, Task>;
 
-    public class SillyAuthenticationComponent
+    public class SillyAuthentication
     {
         AppFunc _next;
 
-        public SillyAuthenticationComponent(AppFunc next)
+        public SillyAuthentication(AppFunc next)
         {
             _next = next;
         }
@@ -35,7 +35,7 @@ namespace Katana
             {
                 await _next.Invoke(environment);
             }
-            
+
         }
     }
 }

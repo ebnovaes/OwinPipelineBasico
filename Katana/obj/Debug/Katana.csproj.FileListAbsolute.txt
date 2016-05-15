@@ -11,3 +11,9 @@ C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.Host.HttpList
 C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\Microsoft.Owin.Hosting.xml
 C:\Desenvolvimento\PontoNet\Katana\Katana\obj\Debug\Katana.exe
 C:\Desenvolvimento\PontoNet\Katana\Katana\obj\Debug\Katana.pdb
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\MyMiddleware.dll
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\SillyAuthentication.dll
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\SillyLogging.dll
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\MyMiddleware.pdb
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\SillyAuthentication.pdb
+C:\Desenvolvimento\PontoNet\Katana\Katana\bin\Debug\SillyLogging.pdb

@@ -4,8 +4,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Katana", "Katana\Katana.csproj", "{7EA25122-48F6-4E71-AE37-C8E2D935D257}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A7B1667D-0189-446D-BD2A-D7F57E09B4B3} = {A7B1667D-0189-446D-BD2A-D7F57E09B4B3}
+		{B7AA9ACC-297A-43D7-9505-757FCBD1A860} = {B7AA9ACC-297A-43D7-9505-757FCBD1A860}
+		{C3269CDD-8BF5-4120-8A60-D01A99965D14} = {C3269CDD-8BF5-4120-8A60-D01A99965D14}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D68062E7-E027-4ECA-B3B9-10945FE55292}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SillyAuthentication", "SillyAuthentication\SillyAuthentication.csproj", "{B7AA9ACC-297A-43D7-9505-757FCBD1A860}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SillyLogging", "SillyLogging\SillyLogging.csproj", "{A7B1667D-0189-446D-BD2A-D7F57E09B4B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMiddleware", "MyMiddleware\MyMiddleware.csproj", "{C3269CDD-8BF5-4120-8A60-D01A99965D14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +28,18 @@ Global
 		{7EA25122-48F6-4E71-AE37-C8E2D935D257}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EA25122-48F6-4E71-AE37-C8E2D935D257}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EA25122-48F6-4E71-AE37-C8E2D935D257}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7AA9ACC-297A-43D7-9505-757FCBD1A860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7AA9ACC-297A-43D7-9505-757FCBD1A860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7AA9ACC-297A-43D7-9505-757FCBD1A860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7AA9ACC-297A-43D7-9505-757FCBD1A860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7B1667D-0189-446D-BD2A-D7F57E09B4B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7B1667D-0189-446D-BD2A-D7F57E09B4B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7B1667D-0189-446D-BD2A-D7F57E09B4B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7B1667D-0189-446D-BD2A-D7F57E09B4B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3269CDD-8BF5-4120-8A60-D01A99965D14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3269CDD-8BF5-4120-8A60-D01A99965D14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3269CDD-8BF5-4120-8A60-D01A99965D14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3269CDD-8BF5-4120-8A60-D01A99965D14}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
