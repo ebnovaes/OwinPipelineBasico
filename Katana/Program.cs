@@ -23,7 +23,9 @@ namespace Katana
         public void Configuration(IAppBuilder app)
         {
             var middleware = new Func<AppFunc, AppFunc>(MyMiddleware);
+            var otherMiddleware = new Func<AppFunc, AppFunc>(MyOtherMiddleware);
             app.Use(middleware);
+            app.Use(otherMiddleware);
         }
 
         public AppFunc MyMiddleware(AppFunc next)
@@ -36,8 +38,23 @@ namespace Katana
                     await writer.WriteAsync("<h1>Hello from my First Middleware</h1>");
                 }
 
+               await next.Invoke(environment);
+            };
+            return appFunc;
+        }
+
+        public AppFunc MyOtherMiddleware(AppFunc next)
+        {
+            AppFunc appFunc = async (IDictionary<string, object> environment) =>
+            {
+                var response = environment["owin.ResponseBody"] as Stream;
+                using (StreamWriter writer = new StreamWriter(response))
+                {
+                    await writer.WriteAsync("<h1>Hello from my second middleware</h1>");
+                }
                 await next.Invoke(environment);
             };
+
             return appFunc;
         }
     }
