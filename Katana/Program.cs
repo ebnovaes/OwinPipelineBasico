@@ -22,16 +22,19 @@ namespace Katana
     {
         public void Configuration(IAppBuilder app)
         {
-            app.UseMyMiddleware("This is the new greeting for MyMiddleware!");
+            MyMiddlewareConfigOptions options = new MyMiddlewareConfigOptions("Greetings!", "John");
+            options.IncludeDate = true;
+
+            app.UseMyMiddleware(options);
             app.UserMyOtherMiddleware();
         }
     }
 
     public static class AppBuildExtensions
     {
-        public static void UseMyMiddleware(this IAppBuilder app, string greetingOption)
+        public static void UseMyMiddleware(this IAppBuilder app, MyMiddlewareConfigOptions configOptions)
         {
-            app.Use<MyMiddlewareComponent>(greetingOption);
+            app.Use<MyMiddlewareComponent>(configOptions);
         }
 
         public static void UserMyOtherMiddleware(this IAppBuilder app)
@@ -40,25 +43,52 @@ namespace Katana
         }
     }
 
+    public class MyMiddlewareConfigOptions {
+        string _greetingTextFormat = "{0} from {1}{2}";
+
+        public MyMiddlewareConfigOptions(string greeting, string greeter)
+        {
+            GreetingText = greeting;
+            Greeter = greeter;
+            Date = DateTime.Now;
+        }
+
+        public string GreetingText { get; set; }
+        public string Greeter { get; set; }
+        public DateTime Date { get; set; }
+
+        public bool IncludeDate { get; set; }
+
+        public string GetGreeting()
+        {
+            string DateText = "";
+            if (IncludeDate)
+            {
+                DateText = string.Format(" on {0}", Date.ToShortDateString());
+            }
+            return string.Format(_greetingTextFormat, GreetingText, Greeter, DateText);
+        }
+    }
+
+
     public class MyMiddlewareComponent
     {
         AppFunc _next;
-        string _greeting;
+        MyMiddlewareConfigOptions _configOptions;
 
-        public MyMiddlewareComponent(AppFunc next, string greeting)
+        public MyMiddlewareComponent(AppFunc next, MyMiddlewareConfigOptions configOptions)
         {
             _next = next;
-            _greeting = greeting;
+            _configOptions = configOptions;
         }
 
         public async Task Invoke(IDictionary<string, object> environment)
         {
 
             IOwinContext context = new OwinContext(environment);
-            await context.Response.WriteAsync(string.Format("<h1>{0}</h1>", _greeting));
+            await context.Response.WriteAsync(string.Format("<h1>{0}</h1>", _configOptions.GetGreeting()));
             await _next.Invoke(environment);
         }
-
     }
 
     public class MyOtherMiddlewareComponent
@@ -77,4 +107,5 @@ namespace Katana
             await _next.Invoke(environment);
         }
     }
+
 }
