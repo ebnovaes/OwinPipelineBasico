@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Katana", "Katana\Katana.csproj", "{7EA25122-48F6-4E71-AE37-C8E2D935D257}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KatanaConsole", "KatanaConsole\KatanaConsole.csproj", "{7EA25122-48F6-4E71-AE37-C8E2D935D257}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A7B1667D-0189-446D-BD2A-D7F57E09B4B3} = {A7B1667D-0189-446D-BD2A-D7F57E09B4B3}
 		{B7AA9ACC-297A-43D7-9505-757FCBD1A860} = {B7AA9ACC-297A-43D7-9505-757FCBD1A860}
